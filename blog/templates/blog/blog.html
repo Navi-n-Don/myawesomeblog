@@ -1,0 +1,57 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Recent Posts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="theme-color" content="#7952b3">
+  </head>
+  <body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light font-italic fixed-top" style="background-color: #F3C19D;">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">My Awesome Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a href="{% static 'data.txt' %}" class="nav-item nav-link">About Me</a>
+          <a target="_blank" href="https://www.facebook.com/profile.php?id=100008360505377" class="nav-item nav-link">Facebook</a>
+          <a href="" class="nav-item nav-link active">Blog</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="pt-5" role="main">
+    <div class="container">
+        <div class="row pt-5">
+            <h1>Recent Posts</h1>
+
+          {% for post in posts.all %}
+
+            <div class="media pt-5 d-block position-relative">
+              <div class="media-body">
+                <a href="{% url 'specific_post' post.id %}"><h3 class="d-inline-flex">{{ post.post_title }}</h3></a>
+                <p>{{ post.get_summary }} ...</p>
+              </div>
+              <img src="{{ post.post_image.url }}" class="mr-3" width="300" alt="{{ post.post_title }}"  title="{{ post.post_title }}">
+              <cite class="position-absolute" style="bottom:0;right:30px;font-size:10pt;">{{ post.post_date }}</cite>
+            </div>
+
+          {% endfor %}
+
+        </div>
+    </div>
+</main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
