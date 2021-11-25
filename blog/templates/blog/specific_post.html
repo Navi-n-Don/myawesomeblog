@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>{{ spost.post_title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="theme-color" content="#7952b3">
+  </head>
+  <body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light font-italic fixed-top" style="background-color: #F3C19D;">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">My Awesome Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a href="{% static 'data.txt' %}" class="nav-item nav-link">About Me</a>
+          <a target="_blank" href="https://www.facebook.com/profile.php?id=100008360505377" class="nav-item nav-link">Facebook</a>
+          <a href="{% url 'showblog' %}" class="nav-item nav-link">Blog</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="pt-5" role="main">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="blog-main">
+              <div class="blog-post">
+                <h2 class="blog-post-title">{{ spost.post_title }}</h2>
+                <small>{{ spost.post_date }}</small><br class="mb-5">
+                <img src="{{ spost.post_image.url }}" class="mr-3 float-left" width="300" alt="{{ spost.post_title }}"  title="{{ spost.post_title }}">
+                <p>{{ spost.post_text }}</p>
+            </div>
+        </div>
+    </div>
+</main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
